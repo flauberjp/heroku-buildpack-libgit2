@@ -47,23 +47,23 @@ popd
 #cp -r $CACHE_DIR/.libgit2/usr/* $APT_DIR/usr/
 
 # debug
-topic "Checking libgit2"
-pushd $BUILD_DIR/.libgit2
-cat <<EOF > test.c
-#include <stdio.h>
-#include <git2/version.h>
+#topic "Checking libgit2"
+#pushd $BUILD_DIR/.libgit2
+#cat <<EOF > test.c
+##include <stdio.h>
+##include <git2/version.h>
 
-int main() {
-#ifdef LIBGIT2_SOVERSION
-  printf("VERSION = %d\n", LIBGIT2_SOVERSION);
-#else
-  printf("LIBGIT2_SOVERSION is not defined\n");
-#endif
-  return 0;
-}
-EOF
-gcc -lgit2 -o test.o test.c || exit 1
-./test.o
-popd
+#int main() {
+##ifdef LIBGIT2_SOVERSION
+#  printf("VERSION = %d\n", LIBGIT2_SOVERSION);
+##else
+#  printf("LIBGIT2_SOVERSION is not defined\n");
+##endif
+#  return 0;
+#}
+#EOF
+#gcc -lgit2 -o test.o test.c || exit 1
+#./test.o
+#popd
 
 exit 0
