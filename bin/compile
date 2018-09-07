@@ -26,24 +26,22 @@ hash -r
 mkdir -p $BUILD_DIR/.libgit2
 mkdir -p $CACHE_DIR/.libgit2
 
-if [[ ! -f $CACHE_DIR/.libgit2/usr/lib/libgit2.so.0.21.0 ]]; then
-  topic "Downloading libgit2 source"
-  curl -L -o $CACHE_DIR/libgit2.tar.gz https://github.com/libgit2/libgit2/archive/v0.21.1.tar.gz
+topic "Downloading libgit2 source"
+curl -L -o $CACHE_DIR/libgit2.tar.gz https://github.com/libgit2/libgit2/archive/v0.27.4.tar.gz
 
-  pushd $BUILD_DIR/.libgit2
+pushd $BUILD_DIR/.libgit2
 
-  topic "Extracting archive"
-  tar xf $CACHE_DIR/libgit2.tar.gz
+topic "Extracting archive"
+tar xf $CACHE_DIR/libgit2.tar.gz
 
-  topic "Building / Installing libgit2"
-  cd libgit2-*
-  mkdir build && cd build
-  mkdir -p $CACHE_DIR/.libgit2/usr
-  cmake .. -DCMAKE_INSTALL_PREFIX=$CACHE_DIR/.libgit2/usr/
-  cmake --build . --target install
+topic "Building / Installing libgit2"
+cd libgit2-*
+mkdir build && cd build
+mkdir -p $CACHE_DIR/.libgit2/usr
+cmake .. -DCMAKE_INSTALL_PREFIX=$CACHE_DIR/.libgit2/usr/
+cmake --build . --target install
 
-  popd
-fi
+popd
 
 topic "Loading cache libgit2"
 cp -r $CACHE_DIR/.libgit2/usr/* $APT_DIR/usr/
