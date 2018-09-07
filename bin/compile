@@ -43,8 +43,8 @@ cmake --build . --target install
 
 popd
 
-topic "Loading cache libgit2"
-cp -r $CACHE_DIR/.libgit2/usr/* $APT_DIR/usr/
+#topic "Loading cache libgit2"
+#cp -r $CACHE_DIR/.libgit2/usr/* $APT_DIR/usr/
 
 # debug
 topic "Checking libgit2"
